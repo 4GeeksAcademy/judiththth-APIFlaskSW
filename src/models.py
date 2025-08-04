@@ -24,6 +24,8 @@ class User(db.Model):
 class Character(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
+    age: Mapped[str] = mapped_column(nullable=False)
+    gender: Mapped[str] = mapped_column(nullable=False)
     eyes: Mapped[str] = mapped_column(nullable=False)
     origin: Mapped[str] = mapped_column(nullable=False)
     favorites: Mapped[list["Favs"]] = relationship(back_populates="character")
@@ -32,6 +34,8 @@ class Character(db.Model):
         return {
             "id": self.id,
             "name": self.name,
+            "age": self.age,
+            "gender": self.gender,
             "eyes": self.eyes,
             "origin": self.origin,
         }
