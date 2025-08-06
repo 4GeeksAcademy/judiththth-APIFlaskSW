@@ -23,10 +23,10 @@ class User(db.Model):
 class Character(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
-    age: Mapped[str] = mapped_column(nullable=False)
-    gender: Mapped[str] = mapped_column(nullable=False)
-    eyes: Mapped[str] = mapped_column(nullable=False)
-    origin: Mapped[str] = mapped_column(nullable=False)
+    age: Mapped[str] = mapped_column(String(120), nullable=False)
+    gender: Mapped[str] = mapped_column(String(120), nullable=True)
+    eyes: Mapped[str] = mapped_column(String(120), nullable=True)
+    origin: Mapped[str] = mapped_column(String(120), nullable=False)
     favorites: Mapped[list["Favs"]] = relationship(back_populates="character")
 
     def serialize(self):
@@ -42,8 +42,8 @@ class Character(db.Model):
 class Planet(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(120), unique=True, nullable=False)
-    population: Mapped[str] = mapped_column(nullable=False)
-    surface: Mapped[str] = mapped_column(nullable=False)
+    population: Mapped[str] = mapped_column(String(120), nullable=False)
+    surface: Mapped[str] = mapped_column(String(120), nullable=False)
     favorites: Mapped[list["Favs"]] = relationship(back_populates="planet")
 
 
